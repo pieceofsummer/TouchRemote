@@ -161,11 +161,11 @@ namespace foo_touchremote
 		TrackPool^ m_trackPool;
 		PlaylistPool^ m_playlistPool;
 		
-		t_size m_currentPlaybackOrder;
-		float m_currentVolume;
+		volatile t_size m_currentPlaybackOrder;
+		volatile float m_currentVolume;
 		ITrack^ m_currentTrack;
 		volatile double m_currentPosition;
-		PlaybackState m_currentState;
+		volatile PlaybackState m_currentState;
 		array<ITrack^>^ m_sourceTracks;
 
 		IPlaylist^ m_currentPlaylist;

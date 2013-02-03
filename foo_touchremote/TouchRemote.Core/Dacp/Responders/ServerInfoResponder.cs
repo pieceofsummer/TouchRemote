@@ -42,7 +42,7 @@ namespace TouchRemote.Core.Dacp.Responders
             }
             catch (Exception ex)
             {
-                Player.Logger.LogMessage("Failed to enumerate network interfaces, falling back to single address");
+                Player.Logger.LogMessage("Failed to enumerate network interfaces, ignoring");
                 ifinfo = null;
             }
             
@@ -54,7 +54,7 @@ namespace TouchRemote.Core.Dacp.Responders
                     mpro = 0x00020008,      // DACP version
                     minm = Player.Name,     // name
                     apro = 0x0003000b,      // DAAP version
-                    aeSV = 0x00030005,      // HomeSharing version
+                    aeSV = 0x00030008,      // HomeSharing version
                     ated = (short)7,        // unknown
                     asgr = (short)3,        // unknown, requred to request artists as groups
                     asse = 1L,              // unknown
@@ -62,9 +62,9 @@ namespace TouchRemote.Core.Dacp.Responders
                     aeFR = (byte)0x64,      // unknown
                     aeTr = true,            // unknown
                     aeSL = true,            // unknown
-                    aeFP = (byte)2,         // FairPlay version
+                    aeFP = (byte)0,         // FairPlay version
                     aeSR = true,            // unknown
-                    aeSX = 0x7FL,           // unknown // causes asking of fairplay
+                    //aeSX = 0x7FL,           // unknown
                     msed = true,            // editing supported
                     ceWM = "",              // unknown
                     ceVO = true,            // unknown

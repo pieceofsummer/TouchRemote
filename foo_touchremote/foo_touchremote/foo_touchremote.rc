@@ -51,8 +51,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,2,8,2
- PRODUCTVERSION 0,2,8,2
+ FILEVERSION 0,2,8,4
+ PRODUCTVERSION 0,2,8,4
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -69,11 +69,11 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "winTense"
             VALUE "FileDescription", "TouchRemote DACP server for foobar2000"
-            VALUE "FileVersion", "0.2.8.2"
+            VALUE "FileVersion", "0.2.8.4"
             VALUE "InternalName", "foo_touchremote"
             VALUE "OriginalFilename", "foo_touchremote.dll"
             VALUE "ProductName", "TouchRemote DACP server"
-            VALUE "ProductVersion", "0.2.8.2"
+            VALUE "ProductVersion", "0.2.8.4"
         END
     END
     BLOCK "VarFileInfo"

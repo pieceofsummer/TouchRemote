@@ -436,26 +436,27 @@ namespace foo_touchremote
 
 		(new ActivePlaybackOrder_set())->Run(this, mode);
 	}
+    
+   	CALLBACK_START_UU(CurrentVolume_get, float, int)
+		static_api_ptr_t<playback_control> mgr;
+        return mgr->get_volume();;
+	CALLBACK_END()
 
 	int ManagedHost::CurrentVolume::get()
 	{
-		//static_api_ptr_t<playback_control> mgr;
-
-		//float vol = mgr->get_volume();
-
 		float vol = m_currentVolume;
+
+        //float vol = (new CurrentVolume_get())->Run(this, 0);
 
 		if (vol >= 0.0f) return 100;
 
-		return (int)floor(pow(2, vol / 10.0) * 100);
+		return (int)floor(pow(2.0f, vol / 10.0f) * 100.0f);
 	}
 
 	CALLBACK_START_UU(CurrentVolume_set, float, float)
-		if (!static_api_test_t<playback_control>())
-			console::error("playback_control is not available");
 		static_api_ptr_t<playback_control> mgr;
-		mgr->set_volume(arg);
-		return mgr->get_volume();;
+        mgr->set_volume(arg);
+        return mgr->get_volume();;
 	CALLBACK_END()
 
 	void ManagedHost::CurrentVolume::set(int value)
@@ -467,7 +468,7 @@ namespace foo_touchremote
 		else if (value <= 0)
 			vol = -100.0;
 		else
-			vol = log(value / 100.0f) * 10.0f;
+			vol = log(value / 100.0f) * 10.0f / log(2.0f);
 
 		m_currentVolume = (new CurrentVolume_set())->Run(this, vol);
 	}

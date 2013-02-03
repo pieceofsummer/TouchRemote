@@ -11,8 +11,8 @@
 DECLARE_COMPONENT_VERSION
 (
     "TouchRemote DACP server for foobar2000",
-    "0.2.8.2",
-    "(c) winTense 2009-2011\n"
+    "0.2.8.4",
+    "(c) winTense 2009-2013\n"
 	"\n"
 	"This is a preview version, correct work is not guaranteed\n"
 	"\n"

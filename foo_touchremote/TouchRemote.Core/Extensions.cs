@@ -133,7 +133,7 @@ namespace TouchRemote.Core
                         }
                     }
 
-                    if (resize)
+                    //if (resize)
                     {
                         using (var b2 = new Bitmap(width, height, PixelFormat.Format24bppRgb))
                         {
@@ -152,14 +152,14 @@ namespace TouchRemote.Core
                             }
                         }
                     }
-                    else
+                    /*else
                     {
                         using (var ms = new MemoryStream(4096))
                         {
                             b.Save(ms, ImageFormat.Jpeg);
                             return new JpegImageResponse(ms.ToArray());
                         }
-                    }
+                    }*/
                 }
             }
 
