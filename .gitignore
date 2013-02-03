@@ -1,0 +1,15 @@
+FoobarSDK/foobar2000/SDK/Release + CLR
+FoobarSDK/pfc/Release + CLR
+foo_touchremote/foo_touchremote/Release
+foo_touchremote/Release
+foo_touchremote/Release + CLR
+foo_touchremote/TouchRemote.Bonjour/bin
+foo_touchremote/TouchRemote.Bonjour/obj
+foo_touchremote/TouchRemote.Core/obj
+foo_touchremote/TouchRemote.Core/bin
+foo_touchremote/TouchRemote.Interfaces/bin
+foo_touchremote/TouchRemote.Interfaces/obj
+foo_touchremote/TouchRemote.Raop/obj
+foo_touchremote/TouchRemote.Raop/bin
+foo_touchremote/TouchRemote.Raop.Test/bin
+foo_touchremote/TouchRemote.Raop.Test/obj
