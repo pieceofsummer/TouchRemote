@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66C9DB9E-80FE-4876-B696-4B2A0F4902E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TouchRemote.Core</RootNamespace>
+    <AssemblyName>TouchRemote.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release managed|AnyCPU' ">
+    <OutputPath>bin\Release managed\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BitConverterLE.cs" />
+    <Compile Include="Dacp\DataSerializer.cs" />
+    <Compile Include="Dacp\DmapResponse.cs" />
+    <Compile Include="Dacp\FpResponse.cs" />
+    <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Groups.cs" />
+    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Artwork.cs" />
+    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Properties.cs" />
+    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Speakers.cs" />
+    <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Browse.cs" />
+    <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Containers.cs" />
+    <Compile Include="Dacp\Responders\DatabaseInstanceResponder.cs" />
+    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.cs" />
+    <Compile Include="Dacp\Responders\CtrlIntResponder.cs" />
+    <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Edit.cs" />
+    <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Items.cs" />
+    <Compile Include="Dacp\Responders\DatabasesResponder.cs" />
+    <Compile Include="Dacp\Responders\FpSetupResponder.cs" />
+    <Compile Include="Dacp\Responders\IResponder.cs" />
+    <Compile Include="Dacp\Responders\LoginResponder.cs" />
+    <Compile Include="Dacp\Responders\LogoutResponder.cs" />
+    <Compile Include="Dacp\Responders\Responder.cs" />
+    <Compile Include="Dacp\Responders\SessionBoundResponder.cs" />
+    <Compile Include="Dacp\Responders\UpdateResponder.cs" />
+    <Compile Include="Dacp\PathMapper.cs" />
+    <Compile Include="Dacp\ShortcutItem.cs" />
+    <Compile Include="Dynamic.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Filter\FilterExpression.cs" />
+    <Compile Include="Filter\PropertyMap.cs" />
+    <Compile Include="Filter\SortExpression.cs" />
+    <Compile Include="Http\HttpConnection.cs" />
+    <Compile Include="Http\HttpRequest.cs" />
+    <Compile Include="HandleRequestDelegate.cs" />
+    <Compile Include="Http\HttpRequestHeader.cs" />
+    <Compile Include="Http\HttpResponse.cs" />
+    <Compile Include="Http\Response\JpegImageResponse.cs" />
+    <Compile Include="Http\Response\InvalidRequestResponse.cs" />
+    <Compile Include="Http\Response\NoContentResponse.cs" />
+    <Compile Include="Http\Response\NotFoundResponse.cs" />
+    <Compile Include="Http\Response\ServerErrorResponse.cs" />
+    <Compile Include="Dacp\Responders\ServerInfoResponder.cs" />
+    <Compile Include="Http\HttpServer.cs" />
+    <Compile Include="Library\EditCapabilities.cs" />
+    <Compile Include="Library\MoviesPlaylist.cs" />
+    <Compile Include="Library\MusicPlaylist.cs" />
+    <Compile Include="Dacp\MultiValueTag.cs" />
+    <Compile Include="Library\SpecialPlaylistBase.cs" />
+    <Compile Include="Misc\DelayedPropertySetter.cs" />
+    <Compile Include="Misc\ReadWriteLock.cs" />
+    <Compile Include="Misc\LatinFirstSortComparer.cs" />
+    <Compile Include="Pairing\IClientDevice.cs" />
+    <Compile Include="Pairing\PairedDevice.cs" />
+    <Compile Include="Pairing\PairingException.cs" />
+    <Compile Include="Pairing\PairingReply.cs" />
+    <Compile Include="Pairing\PairedDevices.cs" />
+    <Compile Include="Misc\PlaylistComparer.cs" />
+    <Compile Include="Dacp\DacpServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="SessionManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TouchRemote.Interfaces\TouchRemote.Interfaces.csproj">
+      <Project>{EBFE1069-036C-4C2E-99AA-3F67DDAE3922}</Project>
+      <Name>TouchRemote.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="privatekey.pem" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

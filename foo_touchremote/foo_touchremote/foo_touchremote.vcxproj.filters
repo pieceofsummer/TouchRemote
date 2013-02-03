@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Managed">
+      <UniqueIdentifier>{8f494dfe-64c0-48a0-8a35-02542f995ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managed\Impl">
+      <UniqueIdentifier>{1d37e4c8-b5f0-40d0-b51a-3b24db63c56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Unmanaged">
+      <UniqueIdentifier>{39a4f88f-1366-448d-8a5b-44278f80d2cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Managed">
+      <UniqueIdentifier>{14b202ad-b8c8-4028-b15c-1a7d2c17b384}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managed\Impl">
+      <UniqueIdentifier>{95919deb-b681-4bb3-80b1-5db94c9c4b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Unmanaged">
+      <UniqueIdentifier>{dc65a5bc-5cf6-4576-9508-06250b56b3b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{f363e6b9-eb65-4eaa-beba-a17a34df68e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Guids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files\Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyLoader.cpp">
+      <Filter>Source Files\Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="IDProvider.cpp">
+      <Filter>Source Files\Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files\Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="Album.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Artist.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogger.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="FilePlaybackSource.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Library.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ManagedHost.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Playlist.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Track.cpp">
+      <Filter>Source Files\Managed\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoPlaylistClient.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoPlaylistFactory.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="InitQuit.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="LibraryCallback.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayCallback.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaylistCallback.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="PreferencesPage.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="PreferencesPageInstance.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleFormatters.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaylistLock.cpp">
+      <Filter>Source Files\Unmanaged</Filter>
+    </ClCompile>
+    <ClCompile Include="JukeboxPlaylist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JukeboxTrack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaylistPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueCallback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreferencesWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Guids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AssemblyLoader.h">
+      <Filter>Header Files\Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="IDProvider.h">
+      <Filter>Header Files\Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="Album.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Artist.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePlaybackSource.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Library.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="ManagedHost.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Playlist.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Track.h">
+      <Filter>Header Files\Managed\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoPlaylistClient.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoPlaylistFactory.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="InitQuit.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="LibraryCallback.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="MainThreadCallback.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayCallback.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaylistCallback.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="PreferencesPage.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="PreferencesPageInstance.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleFormatters.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="PairingDialog.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PreferencesPageDialog.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaylistLock.h">
+      <Filter>Header Files\Unmanaged</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JukeboxTrack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jukeboxplaylist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="playlistpool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="preferenceswrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trackpool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="foo_touchremote.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PairingDialog.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreferencesPageDialog.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
