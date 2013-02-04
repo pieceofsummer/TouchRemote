@@ -1,7 +1,15 @@
+FoobarSDK/foobar2000/foobar2000_component_client/Debug
+FoobarSDK/foobar2000/foobar2000_component_client/Release
 FoobarSDK/foobar2000/foobar2000_component_client/Release + CLR
+FoobarSDK/foobar2000/SDK/Debug
+FoobarSDK/foobar2000/SDK/Release
 FoobarSDK/foobar2000/SDK/Release + CLR
+FoobarSDK/pfc/Debug
+FoobarSDK/pfc/Release
 FoobarSDK/pfc/Release + CLR
+foo_touchremote/foo_touchremote/Debug
 foo_touchremote/foo_touchremote/Release
+foo_touchremote/Debug
 foo_touchremote/Release
 foo_touchremote/Release + CLR
 foo_touchremote/TouchRemote.Bonjour/bin
@@ -15,6 +23,7 @@ foo_touchremote/TouchRemote.Raop/bin
 foo_touchremote/TouchRemote.Raop.Test/bin
 foo_touchremote/TouchRemote.Raop.Test/obj
 foo_touchremote.sdf
+foo_touchremote.opensdf
 *.suo
 *.vcproj.user
 *.csproj.user
