@@ -14,3 +14,8 @@ foo_touchremote/TouchRemote.Raop/obj
 foo_touchremote/TouchRemote.Raop/bin
 foo_touchremote/TouchRemote.Raop.Test/bin
 foo_touchremote/TouchRemote.Raop.Test/obj
+foo_touchremote.sdf
+*.suo
+*.vcproj.user
+*.csproj.user
+*.vcxproj.user
