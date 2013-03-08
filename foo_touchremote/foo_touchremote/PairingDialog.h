@@ -371,7 +371,11 @@ namespace foo_touchremote
 			}
 			catch (Exception^ ex)
 			{
-				_console::printf("TouchRemote: Pairing failed: {0}", ex->Message);
+				_console::printf("TouchRemote: Pairing failed: {0}", ex->ToString());
+
+                if (ex->GetType() == System::Reflection::TargetInvocationException::typeid)
+                    ex = ex->InnerException;
+
 				MessageBox::Show(ex->Message);
 			}
 		}

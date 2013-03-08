@@ -44,8 +44,8 @@ namespace TouchRemote.Interfaces
         IPlaylist ActivePlaylist { get; }
 
         void ClearPlaybackSource();
-
         void SetPlaybackSource(ITrack[] tracks);
+        ITrack[] GetPlaybackSource();
 
         ITrack Play(int index);
 

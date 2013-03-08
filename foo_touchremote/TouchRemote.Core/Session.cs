@@ -52,12 +52,12 @@ namespace TouchRemote.Core
             }
         }
 
-        private volatile int m_stateLocks;
-        private volatile int m_dbLocks;
+        private int m_stateLocks;
+        private int m_dbLocks;
 
-        public bool IsStateLocked { get { return m_stateLocks > 0; } }
+        public bool IsStateLocked { get { return Interlocked.CompareExchange(ref m_stateLocks, 0, 0) > 0; } }
 
-        public bool IsDbLocked { get { return m_dbLocks > 0; } }
+        public bool IsDbLocked { get { return Interlocked.CompareExchange(ref m_dbLocks, 0, 0) > 0; } }
 
         public IDisposable LockState()
         {

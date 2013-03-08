@@ -263,7 +263,6 @@ namespace TouchRemote.Core.Dacp.Responders
                             }
                         });
                     }
-                    break;
 
                 case "play":
                     {
@@ -272,11 +271,9 @@ namespace TouchRemote.Core.Dacp.Responders
                             var filter = new FilterExpression<ITrack>(Request.QueryString["query"]);
                             var sort = new SortExpression(Request.QueryString["sort"]);
 
-                            ITrack[] items;
-
                             using (Player.MediaLibrary.BeginRead())
                             {
-                                items = sort.Sort(filter.Filter(Player.MediaLibrary.Tracks)).ToArray();
+                                var items = sort.Sort(filter.Filter(Player.MediaLibrary.Tracks)).ToArray();
                                 Player.SetPlaybackSource(items);
                             }
                         }
@@ -296,6 +293,41 @@ namespace TouchRemote.Core.Dacp.Responders
                             }
                         });
                     }
+
+                case "add":
+                    {
+                        if (!string.IsNullOrEmpty(Request.QueryString["query"]))
+                        {
+                            var filter = new FilterExpression<ITrack>(Request.QueryString["query"]);
+                            var sort = new SortExpression(Request.QueryString["sort"]);
+
+                            using (Player.MediaLibrary.BeginRead())
+                            {
+                                var items = new List<ITrack>();
+                                
+                                var oldItems = Player.GetPlaybackSource();
+                                if (oldItems != null)
+                                    items.AddRange(oldItems);
+                                var oldCount = items.Count;
+
+                                items.AddRange(sort.Sort(filter.Filter(Player.MediaLibrary.Tracks)));
+                                if (items.Count != oldCount)
+                                {
+                                    Player.SetPlaybackSource(items.ToArray());
+                                }
+                            }
+                        }
+
+                        return new DmapResponse(new
+                        {
+                            cacr = new
+                            {
+                                mstt = 200,
+                                miid = (Player.ActivePlaylist ?? Player.MediaLibrary).Id
+                            }
+                        });
+                    }
+
                 default:
                     return new NotFoundResponse();
             }

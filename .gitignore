@@ -25,6 +25,7 @@ foo_touchremote/TouchRemote.Raop.Test/obj
 foo_touchremote.sdf
 foo_touchremote.opensdf
 *.suo
+*.ncb
 *.vcproj.user
 *.csproj.user
 *.vcxproj.user

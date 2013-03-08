@@ -45,7 +45,7 @@ namespace TouchRemote.Core.Pairing
             Encoding.ASCII.GetBytes(pairCode, 0, 16, data, 0);
             Encoding.Unicode.GetBytes(pinCode, 0, 4, data, 16);
 
-            data = MD5.Create().ComputeHash(data);
+            data = new Delay.MD5Managed().ComputeHash(data);
 
             var hashString = new StringBuilder(32);
             for (int i = 0; i < data.Length; i++)
