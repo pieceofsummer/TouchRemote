@@ -33,14 +33,15 @@ namespace TouchRemote.Core.Dacp.Responders
                             cmik = (byte)1,
                             cmpr = 0x00020001,
                             capr = 0x00020003,
-                            cmsp = true,        // speakers selector (?)
-                            aeFR = (byte)0x64,
+                            cmsp = true,        // show speakers selector (if needed)
+                            aeFR = (byte)0x64,  // unknown
                             cmsv = true,        // show volume control
-                            cass = true,
-                            caov = true,
+                            cass = true,        // unknown        
+                            caov = true,        // unknown
                             casu = true,        // show rating stars
-                            ceSG = false,       // show Genius button
-                            cmrl = true
+                            ceSG = false,       // show Genius button     
+                            //cmrl = true,        // unknown
+                            //ceSX = 1L           // unknown, required to allow new up-next features      
                         }
                     }
                 }

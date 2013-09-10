@@ -29,8 +29,9 @@ namespace TouchRemote.Core.Dacp.Responders
                             mdbk = 1,                   // database kind?
                             minm = Player.Name,
                             mper = Player.DatabaseId,
-                            aeMk = 3,
-                            meds = 3                    // edit capabilities
+                            aeMk = 1,
+                            meds = 3,                   // edit capabilities
+                            aeCs = 1
                         }
                     }
                 }

@@ -22,7 +22,7 @@ namespace TouchRemote.Core.Dacp.Responders
     /// </summary>
     internal partial class CtrlIntInstanceResponder : SessionBoundResponder
     {
-        private static readonly Regex ctrlIntRegex = new Regex(@"^/ctrl-int/(\d+)/([a-z]+)$");
+        private static readonly Regex ctrlIntRegex = new Regex(@"^/ctrl-int/(\d+)/([a-z\-]+)$");
 
         private int id;
         private string query;
@@ -60,6 +60,9 @@ namespace TouchRemote.Core.Dacp.Responders
                 case "pause":
                     Player.PlayPause();
                     return new NoContentResponse();
+
+                case "playqueue-contents":
+                    return QueueContentsResponse();
             }
 
             using (Session.LockState())
@@ -82,6 +85,9 @@ namespace TouchRemote.Core.Dacp.Responders
                     case "previtem":
                         Player.PlayPrevious();
                         return new NoContentResponse();
+                    
+                    case "playqueue-edit":
+                        return QueueEditResponse();
 
                     //case "beginff":
                     //case "beginrew":
@@ -175,7 +181,10 @@ namespace TouchRemote.Core.Dacp.Responders
                                         cavc = true,                                        // 
                                         caas = (int)Player.AvailableShuffleModes << 1,
                                         caar = (int)Player.AvailableRepeatModes << 1,
-                                        casu = false
+                                        casu = false,
+                                        //ceQu = false,
+                                        //ceMQ = true,
+                                        //ceNQ = 0
                                     }
                                 });
                         }
@@ -198,6 +207,7 @@ namespace TouchRemote.Core.Dacp.Responders
                     { "caas", (int)Player.AvailableShuffleModes << 1 },
                     { "caar", (int)Player.AvailableRepeatModes << 1 },
                     { "casu", false },
+                    { "ceGS", false },
                     /*
                     { "cavs", false },
                     { "cafs", false },
@@ -209,6 +219,9 @@ namespace TouchRemote.Core.Dacp.Responders
 
                 if (track != null)
                 {
+                    var liveTrack = track as ILiveTrack;
+                    var isLive = liveTrack != null && liveTrack.IsLiveStream;
+
                     var container = Player.ActivePlaylist ?? Player.MediaLibrary;
 
                     /*var containerItemId = container.Id;
@@ -226,18 +239,33 @@ namespace TouchRemote.Core.Dacp.Responders
                         TrackId = track.Id
                     }.Data;
 
-                    state["cann"] = track.Title;
-                    state["cana"] = track.ArtistName;
-                    state["canl"] = track.AlbumName;
-                    state["cang"] = track.GenreName;
-
                     if (track.Album != null)
                         state["asai"] = track.Album.PersistentId;
 
-                    state["cast"] = (uint)Math.Round(track.Duration.TotalMilliseconds);
-                    state["cant"] = (uint)Math.Round((track.Duration - Player.CurrentPosition).TotalMilliseconds);
+                    if (!isLive)
+                    {
+                        state["cann"] = track.Title;
+                        state["cana"] = track.ArtistName;
+                        state["canl"] = track.AlbumName;
+                        state["cang"] = track.GenreName;
+                        state["cast"] = (uint)Math.Round(track.Duration.TotalMilliseconds);
+                        state["cant"] = (uint)Math.Round((track.Duration - Player.CurrentPosition).TotalMilliseconds);
+                    }
+                    else
+                    {
+                        state["cann"] = track.Title;
+                        state["cana"] = track.ArtistName;
+                        state["canl"] = track.AlbumName;
+                        state["cang"] = track.GenreName;
+                        state["cant"] = uint.MaxValue;
+                    }
+
+
                     state["casu"] = true;
+                    //state["ceMQ"] = false;
+                    //state["ceNQ"] = 0;
                 }
+                state["ceQu"] = false;
 
                 return new DmapResponse(new
                 {

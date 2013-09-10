@@ -26,6 +26,7 @@ namespace TouchRemote.Core.Filter
             { "daap.songalbum", new TypeHintedReplacement("iif(AlbumName != null, AlbumName, \"\")", true) },
             { "daap.songalbumid", new TypeHintedReplacement("iif(Album != null, Album.PersistentId, 0)", false) },
             { "daap.songartist", new TypeHintedReplacement("iif(ArtistName != null, ArtistName, \"\")", true) },
+            { "daap.songartistid", new TypeHintedReplacement("iif(AlbumArtist != null, AlbumArtist.PersistentId, 0)", false) },
             { "daap.songalbumartist", new TypeHintedReplacement("iif(AlbumArtistName != null, AlbumArtistName, \"\")", true) },
             { "daap.songgenre", new TypeHintedReplacement("iif(GenreName != null, GenreName, \"\")", true) },
             { "daap.songcomposer", new TypeHintedReplacement("iif(ComposerName != null, ComposerName, \"\")", true) },

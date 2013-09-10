@@ -57,8 +57,9 @@ namespace TouchRemote.Core.Dacp.Responders
                                         miid = x.Key.Id,
                                         mper = x.Key.PersistentId,
                                         minm = x.Key.Name,
-                                        agac = x.Where(t => t.Album != null).Select(t => t.Album).Distinct().Count(),
-                                        mimc = x.Count()
+                                        agac = x.Where(t => t.Album != null).Select(t => t.Album).Distinct().Count(),   // albums count
+                                        mimc = x.Count(),           // tracks count
+                                        asri = x.Key.PersistentId   // required to queue an album
                                     }).ToArray(),
                                     mshl = includeSortHeaders ? items.Select(x => x.Key.Name).GetShortcuts(x => x) : null
                                 }
@@ -82,6 +83,8 @@ namespace TouchRemote.Core.Dacp.Responders
                                         mper = x.Key.PersistentId,
                                         minm = x.Key.Title,
                                         asaa = x.Key.Artist.Name,
+                                        asai = x.Key.PersistentId,
+                                        mgds = true,
                                         astm = (uint)x.Sum(t => t.Duration.TotalMilliseconds),
                                         mimc = x.Count()
                                     }).ToArray(),

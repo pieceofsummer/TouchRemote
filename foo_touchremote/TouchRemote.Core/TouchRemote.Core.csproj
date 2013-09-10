@@ -84,8 +84,16 @@
     <Compile Include="Dacp\DataSerializer.cs" />
     <Compile Include="Dacp\DmapResponse.cs" />
     <Compile Include="Dacp\FpResponse.cs" />
+    <Compile Include="Dacp\IListExtender.cs" />
+    <Compile Include="Dacp\TagNameAttribute.cs" />
+    <Compile Include="Dacp\Queue\QueuePart.cs" />
+    <Compile Include="Dacp\Queue\QueueTrack.cs" />
+    <Compile Include="Dacp\Queue\QueueTracks.cs" />
+    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Artwork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Queue.cs" />
     <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Groups.cs" />
-    <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Artwork.cs" />
     <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Properties.cs" />
     <Compile Include="Dacp\Responders\CtrlIntInstanceResponder.Speakers.cs" />
     <Compile Include="Dacp\Responders\DatabaseInstanceResponder.Browse.cs" />
@@ -165,6 +173,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

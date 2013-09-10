@@ -51,10 +51,11 @@ namespace TouchRemote.Core.Dacp.Responders
                 msrv = new
                 {
                     mstt = 200,
-                    mpro = 0x00020008,      // DACP version
+                    mpro = 0x00020009,      // DACP version
                     minm = Player.Name,     // name
                     apro = 0x0003000b,      // DAAP version
-                    aeSV = 0x00030008,      // HomeSharing version
+                    ppro = 0x00020000,      // unknown
+                    aeSV = 0x00030009,      // HomeSharing version
                     ated = (short)7,        // unknown
                     asgr = (short)3,        // unknown, requred to request artists as groups
                     asse = 1L,              // unknown
@@ -62,18 +63,18 @@ namespace TouchRemote.Core.Dacp.Responders
                     aeFR = (byte)0x64,      // unknown
                     aeTr = true,            // unknown
                     aeSL = true,            // unknown
-                    aeFP = (byte)0,         // FairPlay version
                     aeSR = true,            // unknown
-                    //aeSX = 0x7FL,           // unknown
+                    aeFP = (byte)0,         // FairPlay version
+                    //aeSX = 0x6FL,           // unknown, causes FairPlay request
                     msed = true,            // editing supported
                     ceWM = "",              // unknown
-                    ceVO = true,            // unknown
+                    ceVO = false,           // unknown, probably voice-over?
                     msml = ifinfo,          // network interfaces
 
                     mslr = true,            // login required
                     msal = true,            // auto logout
                     mstm = 1800,            // auto logout timeout
-                    msas = (byte)0x3,       // authentication type
+                    msas = (byte)0x3,       // authentication schemas
                     msup = true,            // supports 'update' queries
                     mspi = true,            // supports persistent identifiers
                     msex = true,            // supports extensions (?)

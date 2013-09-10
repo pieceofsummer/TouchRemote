@@ -52,12 +52,16 @@ namespace TouchRemote.Core.Dacp.Responders
                 { "minm", t.Title },
                 { "miid", t.Id },
                 { "mper", t.PersistentId },
+                { "asdb", false }, // song disabled
                 { "mcti", t.Id }, //id2.Value + 1 + index,
                 { "asai", t.Album != null ? t.Album.PersistentId : 0L },
+                { "asri", t.AlbumArtist != null ? t.AlbumArtist.PersistentId : 0L },
+                { "asaa", t.AlbumArtistName },
                 { "astm", (uint)t.Duration.TotalMilliseconds },
                 { "asur", (byte)((byte)t.Rating * 20) },
-                { "aeHV", false },
-                { "aeMK", t.Kind }
+                { "aeHV", false },  // has video
+                { "aeMk", t.Kind },
+                { "mdst", true }
             };
 
             var ext = t as IPropertyExtender;
