@@ -78,11 +78,20 @@ namespace TouchRemote.Core.Dacp
             Dictionary
         }
 
+        private static string PropName(PropertyInfo item)
+        {
+            var attr = (TagNameAttribute)Attribute.GetCustomAttribute(item, typeof(TagNameAttribute));
+            if (attr != null)
+                return attr.Name;
+
+            return item.Name;
+        }
+
         private class MembersCollection : KeyedCollection<string, PropertyInfo>
         {
             protected override string GetKeyForItem(PropertyInfo item)
             {
-                return item.Name;
+                return PropName(item);
             }
         }
 
@@ -228,8 +237,9 @@ namespace TouchRemote.Core.Dacp
 
                 foreach (var item in metadata.Members)
                 {
+                    var itemName = PropName(item);
                     var itemValue = item.GetValue(value, null);
-                    SerializeValue(stream, item.Name, itemValue, metadata);
+                    SerializeValue(stream, itemName, itemValue, metadata);
                 }
             }
             else
@@ -245,6 +255,20 @@ namespace TouchRemote.Core.Dacp
 
         private static void SerializeList(BinaryWriter stream, ICollection value, TypeMetadata metadata, string listName)
         {
+            var extender = value as IListExtender;
+            if (extender != null)
+            {
+                var extension = extender.Extend();
+                if (extension != null)
+                {
+                    var extMetadata = ResolveType(extension.GetType());
+                    if (metadata == null)
+                        throw new ApplicationException("Everything's screwed up!");
+
+                    SerializeDictionary(stream, extension, extMetadata);
+                }
+            }
+
             foreach (var item in value)
             {
                 if (item == null) continue;
@@ -257,7 +281,7 @@ namespace TouchRemote.Core.Dacp
             if (name == null)
                 throw new ArgumentNullException("name");
             if (name.Length != 4)
-                throw new ArgumentException("Name length mismatch", "name");
+                throw new ArgumentException("Name length mismatch (" + name + ")", "name");
 
             if (value == null)
                 return;
@@ -357,6 +381,20 @@ namespace TouchRemote.Core.Dacp
         {
             var size = 0;
 
+            var extender = value as IListExtender;
+            if (extender != null)
+            {
+                var extension = extender.Extend();
+                if (extension != null)
+                {
+                    var extMetadata = ResolveType(extension.GetType());
+                    if (metadata == null)
+                        throw new ApplicationException("Everything's screwed up!");
+
+                    size += MeasureDictionary(extension, extMetadata);
+                }
+            }
+
             foreach (var item in value)
             {
                 if (item == null) continue;
@@ -376,8 +414,9 @@ namespace TouchRemote.Core.Dacp
 
                 foreach (var item in metadata.Members)
                 {
+                    var itemName = PropName(item);
                     var itemValue = item.GetValue(value, null);
-                    size += MeasureValue(item.Name, itemValue, metadata);
+                    size += MeasureValue(itemName, itemValue, metadata);
                 }
             }
             else
@@ -398,7 +437,7 @@ namespace TouchRemote.Core.Dacp
             if (name == null)
                 throw new ArgumentNullException("name");
             if (name.Length != 4)
-                throw new ArgumentException("Name length mismatch", "name");
+                throw new ArgumentException("Name length mismatch (" + name + ")", "name");
 
             if (value == null)
                 return 0;

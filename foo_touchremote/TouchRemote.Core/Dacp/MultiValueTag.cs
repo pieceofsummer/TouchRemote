@@ -12,7 +12,6 @@ namespace TouchRemote.Core.Dacp
         {
             private int index;
             private readonly MultiValueTag source;
-            private DictionaryEntry current;
 
             public MultiValueTagEnumerator(MultiValueTag source)
             {
