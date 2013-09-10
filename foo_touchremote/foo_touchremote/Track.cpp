@@ -11,6 +11,7 @@
 #pragma managed
 
 using namespace System::IO;
+using namespace TouchRemote::Core;
 
 namespace foo_touchremote
 {
@@ -32,6 +33,7 @@ namespace foo_touchremote
 	static String^ format_string(metadb_handle_ptr &track, const titleformat_object::ptr &format, const file_info *info, const char *fallback)
 	{
 		pfc::string8_fastalloc s_value;
+
 		if (format.is_valid() && track->format_title_nonlocking(NULL, s_value, format, NULL))
 		{
 			if (strcmp(s_value, "?") == 0) return String::Empty;
@@ -40,6 +42,24 @@ namespace foo_touchremote
 
 		if (info->meta_exists(fallback))
 			return FromUtf8String(info->meta_get(fallback, 0));
+		
+		return String::Empty;
+	}
+
+	static String^ format_string_live(metadb_handle_ptr &track, const titleformat_object::ptr &format, const file_info &info, const char *fallback)
+	{
+		pfc::string8_fastalloc s_value;
+
+		if (format.is_valid())
+		{
+            track->format_title_from_external_info_nonlocking(info, NULL, s_value, format, NULL);
+
+			if (strcmp(s_value, "?") == 0) return String::Empty;
+			return FromUtf8String(s_value);
+		}
+
+		if (info.meta_exists(fallback))
+			return FromUtf8String(info.meta_get(fallback, 0));
 		
 		return String::Empty;
 	}
@@ -54,6 +74,7 @@ namespace foo_touchremote
 
 		m_library = library;
 		m_source = gcnew FilePlaybackSource(ptr->get_location());
+        m_isLive = false;
 
 		Initialize(ptr);
 	}
@@ -81,7 +102,7 @@ namespace foo_touchremote
 
 		ReadInfo(ptr);
 
-		p_native_handle = new metadb_handle_ptr(ptr);
+        p_native_handle = new metadb_handle_ptr(ptr);
 	}
 
 	void Track::ReadInfo(metadb_handle_ptr &ptr)
@@ -92,7 +113,7 @@ namespace foo_touchremote
 		if (!ptr->get_info_locked(info))
 			throw gcnew ArgumentException("failed to get info for " + m_source->ToString(), "ptr");
 	
-		m_duration = TimeSpan::FromSeconds(info->get_length());
+        m_duration = TimeSpan::FromSeconds(info->get_length());
 		m_title = format_string(ptr, foobar::titleformat::title, info, "TITLE");
 		if (String::IsNullOrEmpty(m_title))
 			m_title = FromUtf8String(pfc::string_filename(ptr->get_path()).get_ptr());
@@ -128,8 +149,46 @@ namespace foo_touchremote
 			m_rating = (TouchRemote::Interfaces::Rating)Math::Max(0, Math::Min(n_rating, 5));
 		else
 			m_rating = TouchRemote::Interfaces::Rating::None;
+
+        m_kind = (Byte)MediaKind::Track;
 	}
-	
+    
+    void Track::SetDynamic(const file_info &info)
+    {
+        if (p_native_handle == NULL) return;
+
+        metadb_handle_ptr ptr = *p_native_handle;
+
+        m_liveTitle = format_string_live(ptr, foobar::titleformat::title, info, "TITLE");
+			
+        String^ album_artist = format_string_live(ptr, foobar::titleformat::albumartist, info, "ALBUM ARTIST");
+		String^ artist = format_string_live(ptr, foobar::titleformat::artist, info, "ARTIST");
+
+		if (!String::IsNullOrEmpty(artist))
+			m_liveArtist = artist;
+		else if (!String::IsNullOrEmpty(album_artist))
+			m_liveArtist = album_artist;
+        else
+            m_liveArtist = nullptr;
+
+		m_liveAlbum = format_string_live(ptr, foobar::titleformat::album, info, "ALBUM");
+
+		m_liveGenre = format_string_live(ptr, foobar::titleformat::genre, info, "GENRE");
+		m_liveComposer = format_string_live(ptr, foobar::titleformat::composer, info, "COMPOSER");
+
+        m_isLive = true;
+    }
+
+    void Track::CancelDynamic()
+    {
+        m_isLive = false;
+        m_liveTitle = nullptr;
+        m_liveArtist = nullptr;
+        m_liveAlbum = nullptr;
+        m_liveGenre = nullptr;
+        m_liveComposer = nullptr;
+    }
+
 	Track::~Track()
 	{
 		//this->!Track();
@@ -143,8 +202,8 @@ namespace foo_touchremote
 				p_native_handle->release();
 			else
 				p_native_handle->detach();
-			delete p_native_handle;
-			p_native_handle = NULL;
+            delete p_native_handle;
+            p_native_handle = NULL;
 		}
 	}
 
@@ -176,7 +235,7 @@ namespace foo_touchremote
 		if (m_artistPtr != nullptr)
 			return m_artistPtr->Name;
 
-		return "Unknown Artist";
+		return ""; // "Unknown Artist";
 	}
 
 	String^ Track::AlbumArtistName::get()
@@ -184,7 +243,7 @@ namespace foo_touchremote
 		if (m_artistPtr != nullptr)
 			return m_artistPtr->Name;
 
-		return "Unknown Artist";
+		return ""; // "Unknown Artist";
 	}
 
 	String^ Track::AlbumName::get()
@@ -192,7 +251,7 @@ namespace foo_touchremote
 		if (m_albumPtr != nullptr)
 			return m_albumPtr->Title;
 			
-		return "Unknown Album";
+		return ""; // "Unknown Album";
 	}
 	
 	String^ Track::Title::get()
@@ -218,6 +277,51 @@ namespace foo_touchremote
 	int Track::DiscNumber::get()
 	{
 		return m_discNumber;
+	}
+
+    Boolean Track::IsLiveStream::get()
+    {
+        return m_isLive;
+    }
+
+    String^ Track::LiveArtistName::get()
+	{
+		if (m_liveArtist != nullptr)
+			return m_liveArtist;
+
+		return ArtistName;
+	}
+
+	String^ Track::LiveAlbumName::get()
+	{
+		if (m_liveAlbum != nullptr)
+			return m_liveAlbum;
+
+		return AlbumName;
+	}
+	
+	String^ Track::LiveTitle::get()
+	{
+		if (m_liveTitle != nullptr)
+			return m_liveTitle;
+
+		return Title;
+	}
+
+	String^ Track::LiveGenreName::get()
+	{
+		if (!String::IsNullOrEmpty(m_liveGenre))
+			return m_liveGenre;
+
+		return GenreName;	
+	}
+
+	String^ Track::LiveComposerName::get()
+	{
+		if (!String::IsNullOrEmpty(m_liveComposer))
+			return m_liveComposer;
+
+		return ComposerName;
 	}
 
 	TouchRemote::Interfaces::Rating Track::Rating::get()
@@ -258,7 +362,7 @@ namespace foo_touchremote
 
 	Byte Track::Kind::get()
 	{
-		return (Byte)MediaKind::Track;
+		return m_kind;
 	}
 
 	int Track::Id::get()

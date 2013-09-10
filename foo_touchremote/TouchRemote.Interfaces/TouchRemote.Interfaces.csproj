@@ -81,6 +81,7 @@
     <Compile Include="IArtworkSource.cs" />
     <Compile Include="IEditablePlaylist.cs" />
     <Compile Include="IJukeboxPlaylist.cs" />
+    <Compile Include="ILiveTrack.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMediaLibrary.cs" />
     <Compile Include="IPlayableTrackCollection.cs" />

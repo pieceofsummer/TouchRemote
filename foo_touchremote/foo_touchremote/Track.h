@@ -9,7 +9,7 @@ using namespace TouchRemote::Interfaces;
 namespace foo_touchremote
 {
 
-	public ref class Track : public ITrack, public IArtworkSource
+	public ref class Track : public ITrack, public IArtworkSource, public ILiveTrack
 	{
 	public:
 		Track(IMediaLibrary^ library, metadb_handle_ptr &ptr);
@@ -98,6 +98,36 @@ namespace foo_touchremote
 			Byte get();
 		}
 
+        virtual property Boolean IsLiveStream
+        {
+            Boolean get();
+        }
+
+		virtual property String^ LiveTitle
+		{
+			String^ get();
+		}
+
+		virtual property String^ LiveArtistName
+		{
+			String^ get();
+		}
+
+		virtual property String^ LiveAlbumName
+		{
+			String^ get();
+		}
+
+		virtual property String^ LiveGenreName
+		{
+			String^ get();
+		}
+
+		virtual property String^ LiveComposerName
+		{
+			String^ get();
+		}
+
 		virtual Bitmap^ GetCoverImage();
 
 		virtual bool Equals(ITrack ^other);
@@ -110,6 +140,10 @@ namespace foo_touchremote
 
 	internal:
 		void ReadInfo(metadb_handle_ptr &ptr);
+        
+        void SetDynamic(const file_info &info);
+        void CancelDynamic();
+
 		metadb_handle_ptr GetHandle();
 
 	private:
@@ -131,6 +165,15 @@ namespace foo_touchremote
 		String^ m_artist;
 		String^ m_genre;
 		String^ m_composer;
+
+        String^ m_liveTitle;
+        String^ m_liveArtist;
+        String^ m_liveGenre;
+        String^ m_liveAlbum;
+        String^ m_liveComposer;
+
+        Boolean m_isLive;
+        Byte m_kind;
 	};
 
 }

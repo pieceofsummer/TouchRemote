@@ -40,6 +40,9 @@ namespace TouchRemote.Core.Dacp.Responders
 
                     var track = Player.CurrentTrack;
 
+                    var liveTrack = track as ILiveTrack;
+                    var isLive = liveTrack != null && liveTrack.IsLiveStream;
+
                     foreach (var prop in props)
                         switch (prop)
                         {
@@ -67,10 +70,20 @@ namespace TouchRemote.Core.Dacp.Responders
                                         TrackId = track.Id
                                     }.Data;
 
-                                    values["cann"] = track.Title;
-                                    values["cana"] = track.ArtistName;
-                                    values["canl"] = track.AlbumName;
-                                    values["cang"] = track.GenreName;
+                                    if (!isLive)
+                                    {
+                                        values["cann"] = track.Title;
+                                        values["cana"] = track.ArtistName;
+                                        values["canl"] = track.AlbumName;
+                                        values["cang"] = track.GenreName;
+                                    }
+                                    else
+                                    {
+                                        values["cann"] = liveTrack.LiveTitle;
+                                        values["cana"] = liveTrack.LiveArtistName;
+                                        values["canl"] = liveTrack.LiveAlbumName;
+                                        values["cang"] = liveTrack.LiveGenreName;
+                                    }
 
                                     if (track.Album != null)
                                         values["asai"] = track.Album.PersistentId; 
@@ -81,8 +94,15 @@ namespace TouchRemote.Core.Dacp.Responders
                             case "dacp.playingtime":
                                 if (track != null)
                                 {
-                                    values["cast"] = (uint)Math.Round(track.Duration.TotalMilliseconds);
-                                    values["cant"] = (uint)Math.Round((track.Duration - Player.CurrentPosition).TotalMilliseconds);
+                                    if (!isLive)
+                                    {
+                                        values["cast"] = (uint)Math.Round(track.Duration.TotalMilliseconds);
+                                        values["cant"] = (uint)Math.Round((track.Duration - Player.CurrentPosition).TotalMilliseconds);
+                                    }
+                                    else
+                                    {
+                                        values["cant"] = uint.MaxValue;
+                                    }
                                 }
                                 break;
                             case "dacp.volumecontrollable":

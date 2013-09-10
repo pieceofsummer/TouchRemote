@@ -480,13 +480,23 @@ namespace foo_touchremote
 
 	void ManagedHost::SetCurrentTrack(metadb_handle_ptr & track)
 	{
-		m_currentTrack = GetTrack(track);
+        SetCurrentTrack(GetTrack(track));
 	}
 
 	void ManagedHost::SetCurrentTrack(ITrack^ track)
 	{
+        if (m_currentTrack != nullptr)
+            ((Track^)m_currentTrack)->CancelDynamic();
+
 		m_currentTrack = track;
 	}
+
+    void ManagedHost::SetCurrentTrackDynamic(const file_info & info)
+    {
+        if (m_currentTrack == nullptr) return;
+
+        ((Track^)m_currentTrack)->SetDynamic(info);
+    }
 
 	void ManagedHost::SetCurrentPosition(double position)
 	{

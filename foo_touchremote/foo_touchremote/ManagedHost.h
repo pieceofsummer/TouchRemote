@@ -134,6 +134,7 @@ namespace foo_touchremote
 		void SetCurrentVolume(float volume);
 		void SetCurrentTrack(metadb_handle_ptr & track);
 		void SetCurrentTrack(ITrack^ track);
+        void SetCurrentTrackDynamic(const file_info & info);
 		void SetCurrentPosition(double position);
 		void SetCurrentState(bool isPlaying, bool isPaused);
 		void SetCurrentPlaylistInvalid();

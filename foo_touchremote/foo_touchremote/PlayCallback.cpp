@@ -68,7 +68,6 @@ namespace foo_touchremote
 			try
 			{
 				ManagedHost::Instance->SetCurrentPosition(p_time);
-
 				SessionManager::StateUpdated();
 			}
 			finally
@@ -107,6 +106,7 @@ namespace foo_touchremote
 
 		void PlayCallback::on_playback_dynamic_info_track(const file_info &p_info)
 		{
+            ManagedHost::Instance->SetCurrentTrackDynamic(p_info);
 		}
 
 		void PlayCallback::on_playback_time(double p_time)
@@ -146,7 +146,7 @@ namespace foo_touchremote
 				| flag_on_playback_pause
 				| flag_on_playback_edited
 				//| flag_on_playback_dynamic_info
-				//| flag_on_playback_dynamic_info_track
+				| flag_on_playback_dynamic_info_track
 				| flag_on_playback_time
 				| flag_on_volume_change;
 		}
