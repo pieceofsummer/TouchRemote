@@ -32,10 +32,9 @@ namespace TouchRemote.Core.Pairing
             Debug.Print("Trying to pair with device {0} at {1}", device.Name, device.Host);
 
             string pairCode = device.PairCode;
-            if (string.IsNullOrEmpty(pairCode) || pairCode.Length != 16 ||
-                !pairCode.All(c => char.IsDigit(c) || (c >= 'A' && c <= 'F')))
+            if (string.IsNullOrEmpty(pairCode) || pairCode.Length != 16 || !pairCode.All(c => c.IsHexDigit()))
             {
-                // PairCode should be exactly 16 uppercase hexadecimal chars
+                // PairCode should be exactly 16 hexadecimal chars
                 throw new PairingException("Device didn't return a valid pair code");
             }
 

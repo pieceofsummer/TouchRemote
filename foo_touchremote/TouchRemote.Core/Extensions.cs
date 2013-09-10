@@ -26,6 +26,13 @@ namespace TouchRemote.Core
             return (uint)Math.Round(value.Subtract(unixEpoch).TotalSeconds);
         }
 
+        public static bool IsHexDigit(this char c)
+        {
+            if (char.IsDigit(c)) return true;
+            if (c >= 'A' && c <= 'F') return true;
+            return (c >= 'a' && c <= 'f');
+        }
+
         public static bool HasIncomingData(this Socket sock, bool withErrors)
         {
             /*var read = new List<Socket>() { sock };
