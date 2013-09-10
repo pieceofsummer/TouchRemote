@@ -28,6 +28,9 @@
 #include <shellapi.h>
 #include <ole2.h>
 
+#pragma warning (disable: 4996) // floating point functions from foobar libraries produce warnings
+#pragma warning (disable: 4691) // some assembly reference warning
+
 #pragma comment(lib, "../../foobarsdk/foobar2000/shared/shared.lib")
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(lib, "shlwapi.lib")

@@ -10,7 +10,6 @@ namespace TouchRemote.Core.Library
     {
         private readonly int m_id;
         private readonly string m_name;
-        private readonly IMediaLibrary m_library;
 
         public MoviesPlaylist(IMediaLibrary library, string name) : base(library, PlaylistType.Movies, name)
         {

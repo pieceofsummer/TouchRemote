@@ -116,10 +116,8 @@ namespace TouchRemote.Core.Http
         {
             var connection = (HttpConnection)state;
 
-            var count = Interlocked.Increment(ref connectionCount);
-#if DEBUG
-            connection.Server.Player.Logger.LogMessage("Connection++, count: {0}", count);
-#endif
+            Interlocked.Increment(ref connectionCount);
+
             try
             {
                 connection.Work();
@@ -130,10 +128,7 @@ namespace TouchRemote.Core.Http
             }
             finally
             {
-                count = Interlocked.Decrement(ref connectionCount);
-#if DEBUG
-                connection.Server.Player.Logger.LogMessage("Connection--, count: {0}", count);
-#endif
+                Interlocked.Decrement(ref connectionCount);
                 GC.Collect(1);
             }
         }
